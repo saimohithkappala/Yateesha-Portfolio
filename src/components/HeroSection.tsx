@@ -5,7 +5,7 @@ import { Box, Typography, Button, Container } from "@mui/material"
 import { motion } from "framer-motion"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 
-const HeroSection: React.FC = () => {
+const HeroSection: React.FC<{ handleViewProjects: () => void }> = ({ handleViewProjects }) => {
   return (
     <Box
       sx={{
@@ -25,7 +25,6 @@ const HeroSection: React.FC = () => {
             gap: 8,
           }}
         >
-          {/* Left Content */}
           <Box sx={{ flex: 1 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Typography
@@ -78,6 +77,7 @@ const HeroSection: React.FC = () => {
                       background: "linear-gradient(90deg, #4f46e5, #db2777)",
                     },
                   }}
+                  onClick={handleViewProjects} // Call the function passed from the parent
                 >
                   View Projects
                 </Button>
@@ -104,25 +104,22 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <Box sx={{ display: "flex", gap: 3, mt: 6 }}>
-                {[
-                  { number: "4+", label: "Years Experience" },
-                  { number: "20+", label: "Projects Completed" },
-                  { number: "10+", label: "Happy Clients" },
-                ].map((item, idx) => (
-                  <Box key={idx}>
-                    <Typography variant="h3" fontWeight={700} color="primary">
-                      {item.number}
-                    </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                      {item.label}
-                    </Typography>
-                  </Box>
-                ))}
+                {[{ number: "4+", label: "Years Experience" }, { number: "20+", label: "Projects Completed" }, { number: "10+", label: "Happy Clients" }].map(
+                  (item, idx) => (
+                    <Box key={idx}>
+                      <Typography variant="h3" fontWeight={700} color="primary">
+                        {item.number}
+                      </Typography>
+                      <Typography variant="body2" color="text.secondary">
+                        {item.label}
+                      </Typography>
+                    </Box>
+                  )
+                )}
               </Box>
             </motion.div>
           </Box>
 
-          {/* Right Content - Image Placeholder */}
           <Box sx={{ flex: 1 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -187,7 +184,6 @@ const HeroSection: React.FC = () => {
         </Box>
       </Container>
 
-      {/* Background decorative elements */}
       <Box
         sx={{
           position: "absolute",

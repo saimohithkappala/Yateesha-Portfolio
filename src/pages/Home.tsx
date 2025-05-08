@@ -1,6 +1,4 @@
-"use client"
-
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Container, Typography, Box, Button } from "@mui/material"
 import { motion } from "framer-motion"
 import { projects, type FrontendProject } from "../components/data/projects"
@@ -17,6 +15,16 @@ const Home = () => {
   const [selectedProject, setSelectedProject] = useState<FrontendProject>(projects[0])
   const [modalOpen, setModalOpen] = useState(false)
 
+  // Ref for the projects section
+  const projectsRef = useRef<HTMLDivElement>(null)
+
+  // Handle scroll to the projects section
+  const handleViewProjects = () => {
+    if (projectsRef.current) {
+      projectsRef.current.scrollIntoView({ behavior: "smooth" })
+    }
+  }
+
   const handleViewDetails = (project: FrontendProject) => {
     setSelectedProject(project)
     setModalOpen(true)
@@ -25,11 +33,11 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <HeroSection />
+      <HeroSection handleViewProjects={handleViewProjects} /> {/* Pass down handleViewProjects */}
 
       <Container maxWidth="lg" sx={{ py: 8 }}>
         {/* Project Cards Section */}
-        <Box mb={8}>
+        <Box mb={8} ref={projectsRef}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4 }}>
               <Typography
@@ -61,30 +69,29 @@ const Home = () => {
           </motion.div>
 
           <Box
-              sx={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 3,
-                justifyContent: { xs: "center", md: "flex-start" },
-              }}
-            >
-              {projects.map((project, index) => (
-                <Box
-                  key={project.id}
-                  sx={{
-                    flexBasis: {
-                      xs: "100%",
-                      sm: "calc(50% - 12px)", // 12px gap for sm breakpoint
-                      md: "calc(33.333% - 16px)", // 16px gap for md+
-                    },
-                    flexGrow: 1,
-                  }}
-                >
-                  <ProjectCard project={project} onViewDetails={() => handleViewDetails(project)} index={index} />
-                </Box>
-              ))}
-            </Box>
-
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: 3,
+              justifyContent: { xs: "center", md: "flex-start" },
+            }}
+          >
+            {projects.map((project, index) => (
+              <Box
+                key={project.id}
+                sx={{
+                  flexBasis: {
+                    xs: "100%",
+                    sm: "calc(50% - 12px)", // 12px gap for sm breakpoint
+                    md: "calc(33.333% - 16px)", // 16px gap for md+
+                  },
+                  flexGrow: 1,
+                }}
+              >
+                <ProjectCard project={project} onViewDetails={() => handleViewDetails(project)} index={index} />
+              </Box>
+            ))}
+          </Box>
         </Box>
 
         {/* Tech Radar Section */}
