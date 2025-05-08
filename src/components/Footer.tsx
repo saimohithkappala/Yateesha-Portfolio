@@ -122,9 +122,7 @@ const Footer: React.FC = () => {
             <Typography variant="subtitle2" fontWeight={600} sx={{ mb: 2 }}>
               Get In Touch
             </Typography>
-            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-              Have a project in mind? Let's work together!
-            </Typography>
+            
             <Link
               href="mailto:yateeshapappala@gmail.com"
               underline="hover"

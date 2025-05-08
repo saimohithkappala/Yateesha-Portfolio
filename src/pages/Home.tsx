@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import { Container, Typography, Box, Button } from "@mui/material"
 import { motion } from "framer-motion"
 import { projects, type FrontendProject } from "../components/data/projects"
@@ -15,16 +15,6 @@ const Home = () => {
   const [selectedProject, setSelectedProject] = useState<FrontendProject>(projects[0])
   const [modalOpen, setModalOpen] = useState(false)
 
-  // Ref for the projects section
-  const projectsRef = useRef<HTMLDivElement>(null)
-
-  // Handle scroll to the projects section
-  const handleViewProjects = () => {
-    if (projectsRef.current) {
-      projectsRef.current.scrollIntoView({ behavior: "smooth" })
-    }
-  }
-
   const handleViewDetails = (project: FrontendProject) => {
     setSelectedProject(project)
     setModalOpen(true)
@@ -33,11 +23,13 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <HeroSection handleViewProjects={handleViewProjects} /> {/* Pass down handleViewProjects */}
+      <HeroSection handleViewProjects={() => {
+        const el = document.getElementById("Projects");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }} />
 
       <Container maxWidth="lg" sx={{ py: 8 }}>
-        {/* Project Cards Section */}
-        <Box mb={8} ref={projectsRef}>
+        <Box mb={8} id="Projects">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4 }}>
               <Typography
@@ -53,7 +45,7 @@ const Home = () => {
               </Typography>
               <Button
                 variant="outlined"
-                endIcon={<ArrowForwardIcon fontSize="small" />}
+                endIcon={<ArrowForwardIcon />}
                 sx={{
                   borderColor: "#6366f1",
                   color: "#6366f1",
@@ -68,34 +60,17 @@ const Home = () => {
             </Box>
           </motion.div>
 
-          <Box
-            sx={{
-              display: "flex",
-              flexWrap: "wrap",
-              gap: 3,
-              justifyContent: { xs: "center", md: "flex-start" },
-            }}
-          >
+          <Box sx={{ display: "flex", flexWrap: "wrap", gap: 3, justifyContent: "center" }}>
             {projects.map((project, index) => (
-              <Box
-                key={project.id}
-                sx={{
-                  flexBasis: {
-                    xs: "100%",
-                    sm: "calc(50% - 12px)", // 12px gap for sm breakpoint
-                    md: "calc(33.333% - 16px)", // 16px gap for md+
-                  },
-                  flexGrow: 1,
-                }}
-              >
+              <Box key={project.id} sx={{ flexBasis: { xs: "100%", sm: "48%", md: "30%" } }}>
                 <ProjectCard project={project} onViewDetails={() => handleViewDetails(project)} index={index} />
               </Box>
             ))}
           </Box>
         </Box>
 
-        {/* Tech Radar Section */}
-        <Box my={8}>
+        {/* Skills Section */}
+        <Box my={8} id="Skills">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <Typography
               variant="h4"
@@ -110,15 +85,14 @@ const Home = () => {
               Technical Skills
             </Typography>
           </motion.div>
-
           <RadarChart
             labels={["React", "TypeScript", "CSS", "MUI", "Redux", "Node.js", "Express", "MongoDB"]}
             data={[95, 90, 85, 88, 80, 75, 70, 65]}
           />
         </Box>
 
-        {/* Interactive Component Section */}
-        <Box my={8}>
+        {/* Demo Section */}
+        <Box my={8} id="Demo">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
             <Typography
               variant="h4"
@@ -133,14 +107,19 @@ const Home = () => {
               Interactive Components
             </Typography>
           </motion.div>
-
           <InteractiveDemo />
+        </Box>
+
+        {/* Contact Section */}
+        <Box my={8} id="Contact">
+          <Typography variant="h4" sx={{ fontWeight: 700, mb: 2 }}>
+            Contact
+          </Typography>
+          <Typography>Feel free to reach out via LinkedIn, GitHub, or email!</Typography>
         </Box>
       </Container>
 
-      {/* Modal for Project Details */}
       <ProjectModal open={modalOpen} onClose={() => setModalOpen(false)} project={selectedProject} />
-
       <Footer />
     </>
   )
