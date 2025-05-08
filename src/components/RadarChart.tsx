@@ -40,7 +40,7 @@ const RadarChart: React.FC<{ data: number[]; labels: string[] }> = ({ data, labe
         pointLabels: {
           font: {
             size: 12,
-            weight: "600" as const,
+            weight: 600,
           },
           color: "#64748b",
         },

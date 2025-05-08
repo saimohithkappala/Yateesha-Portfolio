@@ -1,7 +1,7 @@
 "use client"
 
 import type React from "react"
-import { Box, Typography, Button, Container, Grid } from "@mui/material"
+import { Box, Typography, Button, Container } from "@mui/material"
 import { motion } from "framer-motion"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 
@@ -17,8 +17,16 @@ const HeroSection: React.FC = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={8} alignItems="center">
-          <Grid item xs={12} md={7}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          {/* Left Content */}
+          <Box sx={{ flex: 1 }}>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
               <Typography
                 variant="h2"
@@ -96,35 +104,26 @@ const HeroSection: React.FC = () => {
               transition={{ duration: 0.6, delay: 0.6 }}
             >
               <Box sx={{ display: "flex", gap: 3, mt: 6 }}>
-                <Box>
-                  <Typography variant="h3" fontWeight={700} color="primary">
-                    4+
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Years Experience
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography variant="h3" fontWeight={700} color="primary">
-                    20+
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Projects Completed
-                  </Typography>
-                </Box>
-                <Box>
-                  <Typography variant="h3" fontWeight={700} color="primary">
-                    10+
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    Happy Clients
-                  </Typography>
-                </Box>
+                {[
+                  { number: "4+", label: "Years Experience" },
+                  { number: "20+", label: "Projects Completed" },
+                  { number: "10+", label: "Happy Clients" },
+                ].map((item, idx) => (
+                  <Box key={idx}>
+                    <Typography variant="h3" fontWeight={700} color="primary">
+                      {item.number}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                      {item.label}
+                    </Typography>
+                  </Box>
+                ))}
               </Box>
             </motion.div>
-          </Grid>
+          </Box>
 
-          <Grid item xs={12} md={5}>
+          {/* Right Content - Image Placeholder */}
+          <Box sx={{ flex: 1 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -184,8 +183,8 @@ const HeroSection: React.FC = () => {
                 }}
               />
             </motion.div>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
       </Container>
 
       {/* Background decorative elements */}

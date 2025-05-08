@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import { Container, Typography, Box, Grid, Button } from "@mui/material"
+import { Container, Typography, Box, Button } from "@mui/material"
 import { motion } from "framer-motion"
 import { projects, type FrontendProject } from "../components/data/projects"
 import ProjectModal from "../components/ProjectModal"
@@ -60,13 +60,31 @@ const Home = () => {
             </Box>
           </motion.div>
 
-          <Grid container spacing={3}>
-            {projects.map((project, index) => (
-              <Grid item xs={12} sm={6} md={4} key={project.id}>
-                <ProjectCard project={project} onViewDetails={() => handleViewDetails(project)} index={index} />
-              </Grid>
-            ))}
-          </Grid>
+          <Box
+              sx={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 3,
+                justifyContent: { xs: "center", md: "flex-start" },
+              }}
+            >
+              {projects.map((project, index) => (
+                <Box
+                  key={project.id}
+                  sx={{
+                    flexBasis: {
+                      xs: "100%",
+                      sm: "calc(50% - 12px)", // 12px gap for sm breakpoint
+                      md: "calc(33.333% - 16px)", // 16px gap for md+
+                    },
+                    flexGrow: 1,
+                  }}
+                >
+                  <ProjectCard project={project} onViewDetails={() => handleViewDetails(project)} index={index} />
+                </Box>
+              ))}
+            </Box>
+
         </Box>
 
         {/* Tech Radar Section */}

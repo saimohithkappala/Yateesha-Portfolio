@@ -1,6 +1,7 @@
+"use client"
+
 import type React from "react"
 import { Box, Container, Typography, IconButton, Link, Divider } from "@mui/material"
-import Grid from '@mui/material/Grid';
 import GitHubIcon from "@mui/icons-material/GitHub"
 import LinkedInIcon from "@mui/icons-material/LinkedIn"
 import EmailIcon from "@mui/icons-material/Email"
@@ -20,8 +21,17 @@ const Footer: React.FC = () => {
       }}
     >
       <Container maxWidth="lg">
-        <Grid container spacing={4}>
-          <Grid item xs={12} md={4}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: { xs: "column", md: "row" },
+            justifyContent: "space-between",
+            gap: { xs: 4, md: 0 },
+            flexWrap: "wrap",
+          }}
+        >
+          {/* Section 1 */}
+          <Box sx={{ flex: { xs: "1 1 100%", md: "1 1 25%" } }}>
             <Typography
               variant="h6"
               sx={{
@@ -38,65 +48,25 @@ const Footer: React.FC = () => {
               A showcase of my frontend development projects and skills, built with React, TypeScript, and Material UI.
             </Typography>
             <Box sx={{ display: "flex", gap: 1 }}>
-              <IconButton
-                size="small"
-                sx={{
-                  color: "#6366f1",
-                  "&:hover": {
-                    backgroundColor: "rgba(99, 102, 241, 0.1)",
-                  },
-                }}
-              >
-                <GitHubIcon fontSize="small" />
-              </IconButton>
-              <IconButton
-                size="small"
-                sx={{
-                  color: "#6366f1",
-                  "&:hover": {
-                    backgroundColor: "rgba(99, 102, 241, 0.1)",
-                  },
-                }}
-              >
-                <LinkedInIcon fontSize="small" />
-              </IconButton>
-              <IconButton
-                size="small"
-                sx={{
-                  color: "#6366f1",
-                  "&:hover": {
-                    backgroundColor: "rgba(99, 102, 241, 0.1)",
-                  },
-                }}
-              >
-                <TwitterIcon fontSize="small" />
-              </IconButton>
-              <IconButton
-                size="small"
-                sx={{
-                  color: "#6366f1",
-                  "&:hover": {
-                    backgroundColor: "rgba(99, 102, 241, 0.1)",
-                  },
-                }}
-              >
-                <InstagramIcon fontSize="small" />
-              </IconButton>
-              <IconButton
-                size="small"
-                sx={{
-                  color: "#6366f1",
-                  "&:hover": {
-                    backgroundColor: "rgba(99, 102, 241, 0.1)",
-                  },
-                }}
-              >
-                <EmailIcon fontSize="small" />
-              </IconButton>
+              {[GitHubIcon, LinkedInIcon, TwitterIcon, InstagramIcon, EmailIcon].map((Icon, idx) => (
+                <IconButton
+                  key={idx}
+                  size="small"
+                  sx={{
+                    color: "#6366f1",
+                    "&:hover": {
+                      backgroundColor: "rgba(99, 102, 241, 0.1)",
+                    },
+                  }}
+                >
+                  <Icon fontSize="small" />
+                </IconButton>
+              ))}
             </Box>
-          </Grid>
+          </Box>
 
-          <Grid item xs={6} md={2}>
+          {/* Section 2 - Navigation */}
+          <Box sx={{ flex: { xs: "1 1 50%", md: "1 1 15%" } }}>
             <Typography variant="subtitle2" fontWeight={600} sx={{ mb: 2 }}>
               Navigation
             </Typography>
@@ -119,9 +89,10 @@ const Footer: React.FC = () => {
                 </Box>
               ))}
             </Box>
-          </Grid>
+          </Box>
 
-          <Grid item xs={6} md={2}>
+          {/* Section 3 - Resources */}
+          <Box sx={{ flex: { xs: "1 1 50%", md: "1 1 15%" } }}>
             <Typography variant="subtitle2" fontWeight={600} sx={{ mb: 2 }}>
               Resources
             </Typography>
@@ -144,9 +115,10 @@ const Footer: React.FC = () => {
                 </Box>
               ))}
             </Box>
-          </Grid>
+          </Box>
 
-          <Grid item xs={12} md={4}>
+          {/* Section 4 - Contact */}
+          <Box sx={{ flex: { xs: "1 1 100%", md: "1 1 30%" } }}>
             <Typography variant="subtitle2" fontWeight={600} sx={{ mb: 2 }}>
               Get In Touch
             </Typography>
@@ -164,8 +136,8 @@ const Footer: React.FC = () => {
             >
               yateeshapappala@gmail.com
             </Link>
-          </Grid>
-        </Grid>
+          </Box>
+        </Box>
 
         <Divider sx={{ my: 4 }} />
 
