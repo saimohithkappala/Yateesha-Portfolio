@@ -132,6 +132,9 @@ const NavBar: React.FC<NavbarProps> = ({ window }) => {
                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}>
                     <Button
                       variant="contained"
+                      component="a"
+                      href="https://drive.google.com/file/d/1uVjXgZCgrcDFn3sEIvWlxgIVnRA8muSG/view?usp=sharing"
+                      target="_blank"
                       sx={{
                         background: "linear-gradient(90deg, #6366f1, #ec4899)",
                         "&:hover": {
