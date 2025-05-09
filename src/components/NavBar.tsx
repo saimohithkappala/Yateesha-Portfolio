@@ -70,6 +70,9 @@ const NavBar: React.FC<NavbarProps> = ({ window }) => {
           <ListItemButton sx={{ justifyContent: "center" }}>
             <Button
               variant="contained"
+              component="a"
+              href="https://drive.google.com/file/d/1uVjXgZCgrcDFn3sEIvWlxgIVnRA8muSG/view?usp=sharing"
+              target="_blank"
               sx={{
                 background: "linear-gradient(90deg, #6366f1, #ec4899)",
                 "&:hover": {
