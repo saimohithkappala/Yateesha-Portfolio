@@ -5,7 +5,7 @@ import { Box, Typography, Button, Container } from "@mui/material"
 import { motion } from "framer-motion"
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward"
 
-const HeroSection: React.FC<{ handleViewProjects: () => void }> = ({ handleViewProjects }) => {
+const HeroSection: React.FC<{ handleViewProjects: () => void; handleContact: () => void }> = ({ handleViewProjects, handleContact  }) => {
   return (
     <Box
       sx={{
@@ -77,13 +77,14 @@ const HeroSection: React.FC<{ handleViewProjects: () => void }> = ({ handleViewP
                       background: "linear-gradient(90deg, #4f46e5, #db2777)",
                     },
                   }}
-                  onClick={handleViewProjects} // Call the function passed from the parent
+                  onClick={handleViewProjects}
                 >
                   View Projects
                 </Button>
                 <Button
                   variant="outlined"
                   size="large"
+                  onClick={handleContact}
                   sx={{
                     borderColor: "#6366f1",
                     color: "#6366f1",

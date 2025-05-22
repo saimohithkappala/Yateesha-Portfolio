@@ -23,8 +23,13 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <HeroSection handleViewProjects={() => {
+      <HeroSection 
+      handleViewProjects={() => {
         const el = document.getElementById("Projects");
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }}
+      handleContact={() => {
+        const el = document.getElementById("Contact");
         if (el) el.scrollIntoView({ behavior: "smooth" });
       }} />
 
