@@ -30,10 +30,10 @@
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
-  "homepage": "https://yateesha-portfolio.github.io/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:gh": "PUBLIC_URL=/Yateesha-Portfolio react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
