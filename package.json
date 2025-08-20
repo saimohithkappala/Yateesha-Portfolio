@@ -34,7 +34,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:gh": "PUBLIC_URL=/yateesha-portfolio react-scripts build",
+    "build:gh": "cross-env PUBLIC_URL=/yateesha-portfolio react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "predeploy": "npm run build:gh",
@@ -60,6 +60,7 @@
   },
   "devDependencies": {
     "@types/react-icons": "^3.0.0",
+    "cross-env": "^10.0.0",
     "gh-pages": "^6.3.0"
   }
 }
