@@ -7,7 +7,7 @@ import Home from './pages/Home';
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
+      <Router basename="/yateesha-portfolio">
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
