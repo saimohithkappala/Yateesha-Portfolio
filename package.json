@@ -37,7 +37,7 @@
     "build:gh": "PUBLIC_URL=/Yateesha-Portfolio react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy": "npm run build",
+    "predeploy": "npm run build:gh",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
