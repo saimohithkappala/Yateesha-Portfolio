@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/yateesha-portfolio/static/css/main.e6c13ad2.css",
+    "main.js": "/yateesha-portfolio/static/js/main.269cfb26.js",
+    "static/js/453.703a5066.chunk.js": "/yateesha-portfolio/static/js/453.703a5066.chunk.js",
+    "index.html": "/yateesha-portfolio/index.html",
+    "main.e6c13ad2.css.map": "/yateesha-portfolio/static/css/main.e6c13ad2.css.map",
+    "main.269cfb26.js.map": "/yateesha-portfolio/static/js/main.269cfb26.js.map",
+    "453.703a5066.chunk.js.map": "/yateesha-portfolio/static/js/453.703a5066.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.269cfb26.js"
+  ]
+}
