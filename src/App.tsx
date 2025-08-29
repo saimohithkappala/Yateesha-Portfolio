@@ -4,10 +4,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { theme } from './styles/theme';
 import Home from './pages/Home';
 
+const basename = process.env.PUBLIC_URL || "/";
+
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Router basename="/yateesha-portfolio">
+      <Router basename={basename}>
         <Routes>
           <Route path="/" element={<Home />} />
         </Routes>
